@@ -50,37 +50,38 @@ func (c *SAPAPICaller) Header(masterRecipeGroup, masterRecipe string) {
 	headerData, err := c.callMasterRecipeSrvAPIRequirementHeader("MasterRecipeHeader", masterRecipeGroup, masterRecipe)
 	if err != nil {
 		c.log.Error(err)
-		return
+	} else {
+		c.log.Info(headerData)
 	}
-	c.log.Info(headerData)
 
 	materialAssignmentData, err := c.callToMaterialAssignment(headerData[0].ToMaterialAssignment)
 	if err != nil {
 		c.log.Error(err)
-		return
+	} else {
+		c.log.Info(materialAssignmentData)
 	}
-	c.log.Info(materialAssignmentData)
 
 	operationData, err := c.callToOperation(headerData[0].ToOperation)
 	if err != nil {
 		c.log.Error(err)
-		return
+	} else {
+		c.log.Info(operationData)
 	}
-	c.log.Info(operationData)
 
 	phaseData, err := c.callToPhase(operationData[0].ToPhase)
 	if err != nil {
 		c.log.Error(err)
-		return
+	} else {
+		c.log.Info(phaseData)
 	}
-	c.log.Info(phaseData)
 
 	phaseRelationshipData, err := c.callToPhaseRelationship(phaseData[0].ToPhaseRelationship)
 	if err != nil {
 		c.log.Error(err)
-		return
+	} else {
+		c.log.Info(phaseRelationshipData)
 	}
-	c.log.Info(phaseRelationshipData)
+	return
 
 }
 
